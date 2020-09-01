@@ -17,8 +17,19 @@ defmodule Memo.PickerTest do
       assert Picker.fetch(@valid_id) == %{
                id: :macbeth,
                name: "Macbeth",
-               body: "Out damn spot, out!"
+               body: "Out damn spot, out!",
+               inserted_at: 3
              }
+    end
+  end
+
+  describe "linking api" do
+    test "next should return the next passage" do
+      assert Picker.next(:macbeth)
+    end
+
+    test "prev should return the previous passage" do
+      assert false
     end
   end
 end

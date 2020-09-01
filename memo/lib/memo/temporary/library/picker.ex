@@ -9,10 +9,20 @@ defmodule Memo.Temporary.Library.Picker do
   """
 
   @passages [
-    %{id: :futurama, name: "Futurama", body: "Good news everyone!"},
-    %{id: :it_crowd, name: "IT Crowd", body: "Have you tried turning it on and off again?"},
-    %{id: :hamlet, name: "Hamlet", body: "To be or not to be, that is the question."},
-    %{id: :macbeth, name: "Macbeth", body: "Out damn spot, out!"}
+    %{id: :futurama, name: "Futurama", body: "Good news everyone!", inserted_at: 0},
+    %{
+      id: :it_crowd,
+      name: "IT Crowd",
+      body: "Have you tried turning it on and off again?",
+      inserted_at: 1
+    },
+    %{
+      id: :hamlet,
+      name: "Hamlet",
+      body: "To be or not to be, that is the question.",
+      inserted_at: 2
+    },
+    %{id: :macbeth, name: "Macbeth", body: "Out damn spot, out!", inserted_at: 3}
   ]
 
   @typedoc """
