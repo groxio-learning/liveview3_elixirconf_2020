@@ -19,6 +19,7 @@ defmodule MemoWeb.WelcomeLive do
     }
   end
 
+  @spec render(any) :: Phoenix.LiveView.Rendered.t()
   def render(assigns) do
     ~L"""
     <h1>Memorize This</h1>
@@ -29,4 +30,14 @@ defmodule MemoWeb.WelcomeLive do
     </h2>
     """
   end
+
+  defp previous(socket) do
+    assign(socket, passage: passage(:futurama))
+  end
+
+  def handle_event("previous", _mete, socket) do
+    IO.puts("Be bold")
+    {:noreply, previous(socket)}
+  end
+
 end
