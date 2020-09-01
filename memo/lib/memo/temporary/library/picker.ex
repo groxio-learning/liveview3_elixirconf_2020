@@ -52,6 +52,10 @@ defmodule Memo.Temporary.Library.Picker do
     @passages |> Enum.find(fn %{id: cid} -> cid == id end)
   end
 
+  def first_id() do
+    List.first(list()) |> Map.get(:id)
+  end
+
   @doc """
   Fetches the next passage given an id.
   """
