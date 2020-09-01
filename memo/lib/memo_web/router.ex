@@ -19,6 +19,7 @@ defmodule MemoWeb.Router do
 
     live "/", PageLive, :index
     live "/welcome", WelcomeLive
+    live "/game/:id", GameLive
 
     live "/passages", PassageLive.Index, :index
     live "/passages/new", PassageLive.Index, :new
