@@ -1,15 +1,15 @@
 defmodule MemoWeb.WelcomeLive do
   use MemoWeb, :live_view
 
-  alias Memo.Temporary.Library.Picker
+  alias Memo.Library
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, passage_id: Picker.first_id()) |> load_passage}
+    {:ok, assign(socket, passage_id: Library.first_passage().id) |> load_passage}
   end
 
   defp load_passage(socket) do
     id = socket.assigns.passage_id
-    assign(socket, passage: Picker.fetch(id))
+    assign(socket, passage: Library.get_passage!(id))
   end
 
   @spec render(any) :: Phoenix.LiveView.Rendered.t()
@@ -28,13 +28,13 @@ defmodule MemoWeb.WelcomeLive do
 
   defp previous(socket) do
     current_passage = socket.assigns.passage
-    previous_passage = Picker.prev(current_passage)
+    previous_passage = Library.prev(current_passage.id)
     assign(socket, passage: previous_passage, passage_id: previous_passage.id)
   end
 
   defp next(socket) do
     current_passage = socket.assigns.passage
-    next_passage = Picker.next(current_passage)
+    next_passage = Library.next(current_passage.id)
     assign(socket, passage: next_passage, passage_id: next_passage.id)
   end
 

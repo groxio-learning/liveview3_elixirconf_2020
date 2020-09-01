@@ -9,6 +9,5 @@ defmodule Memo.Repo.Migrations.CreatePassages do
 
       timestamps()
     end
-
   end
 end
