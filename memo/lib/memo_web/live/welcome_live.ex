@@ -39,5 +39,4 @@ defmodule MemoWeb.WelcomeLive do
     IO.puts("Be bold")
     {:noreply, previous(socket)}
   end
-
 end
