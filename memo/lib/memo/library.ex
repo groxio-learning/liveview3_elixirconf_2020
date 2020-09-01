@@ -18,7 +18,28 @@ defmodule Memo.Library do
 
   """
   def list_passages do
-    Repo.all(Passage)
+    q = from p in Passage, order_by: p.id
+    Repo.all(q)
+  end
+
+  def first_passage() do
+    q = from p in Passage, order_by: p.id, limit: 1
+    Repo.one(q)
+  end
+
+  def last_passage() do
+    q = from p in Passage, order_by: [desc: :id], limit: 1
+    Repo.one(q)
+  end
+
+  def next(id) do
+    q = from p in Passage, order_by: p.id, where: p.id > ^id, limit: 1
+    Repo.one(q) || first_passage()
+  end
+
+  def prev(id) do
+    q = from p in Passage, order_by: [desc: :id], where: p.id < ^id, limit: 1
+    Repo.one(q) || last_passage()
   end
 
   @doc """

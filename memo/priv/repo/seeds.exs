@@ -20,13 +20,15 @@
     inserted_at: 2
   },
   %{id: :macbeth, name: "Macbeth", body: "Out damn spot, out!", inserted_at: 3}
-] |> Enum.map(fn passage ->
+]
+|> Enum.map(fn passage ->
   Memo.Repo.insert!(%Memo.Library.Passage{
     name: passage.name,
     body: passage.body,
     steps: 3
   })
 end)
+
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
