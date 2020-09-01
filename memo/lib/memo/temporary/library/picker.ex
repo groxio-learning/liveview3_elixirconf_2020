@@ -20,7 +20,7 @@ defmodule Memo.Temporary.Library.Picker do
   end
 
   def fetch(id) do
-    nil
+    @passages |> Enum.find(fn %{id: cid} -> cid == id end)
   end
 
   def next(id) do

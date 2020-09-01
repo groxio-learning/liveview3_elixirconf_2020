@@ -8,4 +8,17 @@ defmodule Memo.PickerTest do
       assert length(Picker.list()) > 0
     end
   end
+
+  @valid_id :macbeth
+
+  @tag :picker
+  describe "fetch api" do
+    test "should return a passage given valid id" do
+      assert Picker.fetch(@valid_id) == %{
+               id: :macbeth,
+               name: "Macbeth",
+               body: "Out damn spot, out!"
+             }
+    end
+  end
 end
