@@ -23,13 +23,31 @@ defmodule Memo.PickerTest do
     end
   end
 
-  describe "linking api" do
-    test "next should return the next passage" do
-      assert Picker.next(:macbeth)
+  describe "next api" do
+    test "on first element should return second" do
+      futurama = Picker.fetch(:futurama)
+      it_crowd = Picker.fetch(:it_crowd)
+      assert Picker.next(futurama) == it_crowd
     end
 
-    test "prev should return the previous passage" do
-      assert false
+    test "on final element should return first" do
+      macbeth = Picker.fetch(:macbeth)
+      futurama = Picker.fetch(:futurama)
+      assert Picker.next(macbeth) == futurama
+    end
+  end
+
+  describe "prev api" do
+    test "on last element should return previous" do
+      macbeth = Picker.fetch(:macbeth)
+      hamlet = Picker.fetch(:hamlet)
+      assert Picker.prev(macbeth) == hamlet
+    end
+
+    test "on first element should return final" do
+      macbeth = Picker.fetch(:macbeth)
+      futurama = Picker.fetch(:futurama)
+      assert Picker.prev(futurama) == macbeth
     end
   end
 end

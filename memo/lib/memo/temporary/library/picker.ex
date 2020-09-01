@@ -41,6 +41,7 @@ defmodule Memo.Temporary.Library.Picker do
   @spec list() :: [passage()]
   def list() do
     @passages
+    |> Enum.sort_by(fn %{inserted_at: ia} -> ia end)
   end
 
   @doc """
@@ -51,11 +52,35 @@ defmodule Memo.Temporary.Library.Picker do
     @passages |> Enum.find(fn %{id: cid} -> cid == id end)
   end
 
-  def next(id) do
-    nil
+  @doc """
+  Fetches the next passage given an id.
+  """
+  @spec next(passage) :: passage()
+  def next(%{inserted_at: ia} = _current_passage) do
+    passages = list()
+
+    Enum.find(
+      passages,
+      hd(passages),
+      fn %{inserted_at: cia} = _cpassage ->
+        cia > ia
+      end
+    )
   end
 
-  def prev(id) do
-    nil
+  @doc """
+  Fetches the prev passage given an id.
+  """
+  @spec prev(passage) :: passage()
+  def prev(%{inserted_at: ia} = _current_passage) do
+    passages = list()
+
+    Enum.find(
+      passages,
+      tl(passages),
+      fn %{inserted_at: cia} = _cpassage ->
+        cia < ia
+      end
+    )
   end
 end
