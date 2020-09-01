@@ -73,11 +73,11 @@ defmodule Memo.Temporary.Library.Picker do
   """
   @spec prev(passage) :: passage()
   def prev(%{inserted_at: ia} = _current_passage) do
-    passages = list()
+    passages = list() |> Enum.reverse()
 
     Enum.find(
       passages,
-      tl(passages),
+      List.first(passages),
       fn %{inserted_at: cia} = _cpassage ->
         cia < ia
       end
