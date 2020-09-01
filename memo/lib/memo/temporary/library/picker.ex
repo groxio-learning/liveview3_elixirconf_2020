@@ -15,10 +15,28 @@ defmodule Memo.Temporary.Library.Picker do
     %{id: :macbeth, name: "Macbeth", body: "Out damn spot, out!"}
   ]
 
+  @typedoc """
+  Id for a passage.
+  """
+  @type passage_id :: atom
+
+  @typedoc """
+  The type of a passage, currently a map.
+  """
+  @type passage :: map()
+
+  @doc """
+  Lists the available passages.
+  """
+  @spec list() :: [passage()]
   def list() do
     @passages
   end
 
+  @doc """
+  Fetches a passage given its id.
+  """
+  @spec fetch(passage_id) :: passage()
   def fetch(id) do
     @passages |> Enum.find(fn %{id: cid} -> cid == id end)
   end
